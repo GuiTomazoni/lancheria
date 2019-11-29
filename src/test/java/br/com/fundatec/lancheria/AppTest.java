@@ -9,15 +9,17 @@ import org.mockito.Mockito;
 
 import br.com.fundatec.lancheria.Pedido.PedidoBuilder;
 import br.com.fundatec.lancheria.lanches.Hamburguer;
+import br.com.fundatec.lancheria.lanches.XisBacon;
 import br.com.fundatec.lancheria.lanches.XisHamburguer;
-import br.com.fundatec.lancheria.lanches.XisHamburguer.Builder;
+import br.com.fundatec.lancheria.lanches.XisBacon.BuilderBacon;
+import br.com.fundatec.lancheria.lanches.XisHamburguer.BuilderHamburguer;
 
 public class AppTest {
 
 	@Test
 	public void deveRealizarUmPedidoCompleto() throws Exception {
-		Builder xisBuilder = XisHamburguer.builder();
-		XisHamburguer hamburguer = xisBuilder.bifeDe(Hamburguer.CARNE)
+		BuilderHamburguer xisBuilder = XisHamburguer.builder();
+		XisHamburguer hamburguer = xisBuilder.hamburguerDe(Hamburguer.CARNE)
 				.comMaionese(true)
 				.comOvo(true)
 				.comPresunto(true)
@@ -67,9 +69,9 @@ public class AppTest {
 	}
 	
 	@Test
-	public void deveMockarPedido() {
-		Builder xisBuilder = XisHamburguer.builder();
-		XisHamburguer xis = xisBuilder.bifeDe(Hamburguer.CARNE)
+	public void deveMockarPedido() throws Exception {
+		BuilderHamburguer xisBuilder = XisHamburguer.builder();
+		XisHamburguer xis = xisBuilder.hamburguerDe(Hamburguer.CARNE)
 				.comMaionese(true)
 				.comOvo(true)
 				.comPresunto(true)
@@ -99,6 +101,20 @@ public class AppTest {
 				.build();
 		pedido.maioneseExtra();
 		
+		} catch (Exception e) {
+			erro = e.getMessage();
+		}
+		
+		assertEquals(erroEsperado, erro);
+	}
+	
+	@Test
+	public void deveFalharAoMontarXisVazio() {
+		String erro = "";
+		String erroEsperado = "Xis deve conter algum item";
+		try {
+			BuilderBacon xisBuilder = XisBacon.builder();
+			XisBacon xis = xisBuilder.build();
 		} catch (Exception e) {
 			erro = e.getMessage();
 		}

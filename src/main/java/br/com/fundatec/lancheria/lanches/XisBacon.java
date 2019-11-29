@@ -2,57 +2,55 @@ package br.com.fundatec.lancheria.lanches;
 
 import br.com.fundatec.lancheria.factory.Xis;
 
-public class XisHamburguer extends Xis {
+public class XisBacon extends Xis{
 	
-	public XisHamburguer() {
+	public XisBacon() {
 		
 	}
 	
-	public static BuilderHamburguer builder() {
-		return new XisHamburguer().new BuilderHamburguer();
+	public static BuilderBacon builder() {
+		return new XisBacon().new BuilderBacon();
 	}
 	
-	public class BuilderHamburguer {
-		XisHamburguer xis;
+	public class BuilderBacon {
+		XisBacon xis;
 		
-		public BuilderHamburguer() {
-			this.xis = new XisHamburguer();
+		public BuilderBacon() {
+			this.xis = new XisBacon();
 		}
 		
-		public BuilderHamburguer hamburguerDe(Hamburguer hamburguer) {
+		public BuilderBacon hamburguerDe(Hamburguer hamburguer) {
 			xis.hamburguer = hamburguer;
 			return this;
 		}
 		
-		public BuilderHamburguer comOvo(boolean ovo) {
+		public BuilderBacon comOvo(boolean ovo) {
 			xis.ovo = ovo;
 			return this;
 		}
 		
-		public BuilderHamburguer comMaionese(boolean maionese) {
+		public BuilderBacon comMaionese(boolean maionese) {
 			xis.maionese = maionese;
 			return this;
 		}
 		
-		public BuilderHamburguer comPresunto(boolean presunto) {
+		public BuilderBacon comPresunto(boolean presunto) {
 			xis.presunto = presunto;
 			return this;
 		}
 		
-		public BuilderHamburguer comQueijo(boolean queijo) {
+		public BuilderBacon comQueijo(boolean queijo) {
 			xis.queijo = queijo;
 			return this;
 		}
 		
-		public XisHamburguer build() throws Exception {
+		public XisBacon build() throws Exception {
 			if(xis.hamburguer == null && xis.ovo == false && xis.maionese == false && xis.presunto == false && xis.queijo == false) {
 				throw new Exception("Xis deve conter algum item");
 			}
 			return xis;
 		}
 	}
-	
-	
 
 	@Override
 	public void preparar() {
@@ -66,6 +64,7 @@ public class XisHamburguer extends Xis {
 		if(ovo) {
 			System.out.println("Ovo sendo frito");
 		}
+		System.out.println("Colocando o bacon na chapa");
 	}
 
 	@Override
@@ -86,54 +85,12 @@ public class XisHamburguer extends Xis {
 		if(maionese) {
 			System.out.println("Adicionando maionese");
 		}
+		System.out.println("Bacon sendo colocado por cima");
 	}
 
 	@Override
 	public String getName() {
-		return "Xis Hamburguer";
+		return "Xis Bacon";
 	}
 
-	public String getHamburguer() {
-		if(hamburguer == null) {
-			return "null";
-		}
-		return hamburguer.getTitulo();
-	}
-
-	public void setHamburguer(Hamburguer hamburguer) {
-		this.hamburguer = hamburguer;
-	}
-
-	public boolean temOvo() {
-		return ovo;
-	}
-
-	public void setOvo(boolean ovo) {
-		this.ovo = ovo;
-	}
-
-	public boolean temMaionese() {
-		return maionese;
-	}
-
-	public void setMaionese(boolean maionese) {
-		this.maionese = maionese;
-	}
-
-	public boolean temPresunto() {
-		return presunto;
-	}
-
-	public void setPresunto(boolean presunto) {
-		this.presunto = presunto;
-	}
-
-	public boolean temQueijo() {
-		return queijo;
-	}
-
-	public void setQueijo(boolean queijo) {
-		this.queijo = queijo;
-	}
-	
 }
