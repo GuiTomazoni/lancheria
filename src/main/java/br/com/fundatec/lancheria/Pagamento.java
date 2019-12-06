@@ -1,5 +1,7 @@
 package br.com.fundatec.lancheria;
 
+
+//Pagamento foi usado um enum também pois igual bebida, possui apenas estas opções e não precisa ser digitado como string
 public enum Pagamento {
 
 	DINHEIRO("Dinheiro"),

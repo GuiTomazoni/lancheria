@@ -16,6 +16,7 @@ import br.com.fundatec.lancheria.lanches.XisHamburguer.BuilderHamburguer;
 
 public class AppTest {
 
+	//Aqui faço um teste pra ver se um pedido completo está recebendo corretamente todos os itens
 	@Test
 	public void deveRealizarUmPedidoCompleto() throws Exception {
 		BuilderHamburguer xisBuilder = XisHamburguer.builder();
@@ -42,6 +43,7 @@ public class AppTest {
 		assertEquals("Dinheiro", pedido.getPagamento());
 	}
 	
+	//Aqui eu realizo um pedido sem lanche e verifico se foi aceito
 	@Test
 	public void deveRealizarUmPedidoSemLanche() throws Exception {
 		PedidoBuilder pedidoBuilder = Pedido.builder();
@@ -53,6 +55,8 @@ public class AppTest {
 		assertEquals("null", pedido.getLanche());
 	}
 	
+	//Este teste espera uma falha ao tentar realizar um pedido sem forma de pagamento informada
+	//Testando assim a validação de regra de negócio do Builder de pedido
 	@Test
 	public void deveFalharAoFazerPedidoSemPagamento(){
 		String erro = "";
@@ -68,8 +72,10 @@ public class AppTest {
 		assertEquals(erroEsperado, erro);
 	}
 	
+	//Neste teste foi usado a classe Mock para montar um pedido fake
 	@Test
 	public void deveMockarPedido() throws Exception {
+		//crio um Xis usando o builder como sempre, passando as variaveis que eu quero
 		BuilderHamburguer xisBuilder = XisHamburguer.builder();
 		XisHamburguer xis = xisBuilder.hamburguerDe(Hamburguer.CARNE)
 				.comMaionese(true)
@@ -78,17 +84,21 @@ public class AppTest {
 				.comQueijo(true)
 				.build();
 		
+		//Mocko a classe pedido e digo os retornos que ele deve ter caso tais funções sejam chamadas
 		Pedido pedido = Mockito.mock(Pedido.class);
 		when(pedido.getBebida()).thenReturn("Budweiser");
 		when(pedido.getPagamento()).thenReturn("VR");
 		when(pedido.getLanche()).thenReturn(xis.getName());
 	
+		//as opções de bebida e pagamento não constam no Enum mas são aceitas pois foram mockadas
 		assertEquals("Budweiser", pedido.getBebida());
 		assertEquals("VR", pedido.getPagamento());
 		assertEquals("Xis Hamburguer", pedido.getLanche());
 		
 	}
 	
+	//Aqui eu tento pedir maionese extra, sem ter um lanche, lançando assim uma exception 
+	//pois não se pode pedir maionese extra sem um lanche no pedido.
 	@Test
 	public void deveFalharAoPedirMaioneseExtraSemLanche() {
 		String erro = "";
@@ -108,6 +118,7 @@ public class AppTest {
 		assertEquals(erroEsperado, erro);
 	}
 	
+	//Aqui eu tento montar um xis sem itens, caindo na regra de negócio do Builder que não permite
 	@Test
 	public void deveFalharAoMontarXisVazio() {
 		String erro = "";

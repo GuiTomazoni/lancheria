@@ -8,6 +8,7 @@ public class XisHamburguer extends Xis {
 		
 	}
 	
+	//Builder do hamburguer segue o mesmo princípio do XisBacon
 	public static BuilderHamburguer builder() {
 		return new XisHamburguer().new BuilderHamburguer();
 	}
@@ -44,6 +45,7 @@ public class XisHamburguer extends Xis {
 			return this;
 		}
 		
+		//Valida se não foi pedido um Xis vazio, ou seja, só o pão sem itens
 		public XisHamburguer build() throws Exception {
 			if(xis.hamburguer == null && xis.ovo == false && xis.maionese == false && xis.presunto == false && xis.queijo == false) {
 				throw new Exception("Xis deve conter algum item");
@@ -53,7 +55,8 @@ public class XisHamburguer extends Xis {
 	}
 	
 	
-
+	//Os métodos abaixo seguem a mesma lógica do XisBacon, apenas foram implementados de maneira correspondente ao Xis Hamburguer
+	//As validações são as mesmas, os retornos, ou seja, os Sysouts no caso dessa aplicação, são referentes ao tipo de Xis.
 	@Override
 	public void preparar() {
 		if(hamburguer != null) {

@@ -11,7 +11,8 @@ public class Pedido {
 	public Pedido() {
 		
 	}
-	
+	//builder criado pois Pedido pode ou não conter bebida ou lanche e evita que o pagamento seja nulo
+	//sendo assim evita o uso de mais de um construtor e faz uma validação de pagamento
 	public static PedidoBuilder builder() {
 		return new Pedido().new PedidoBuilder();
 	}
@@ -37,7 +38,7 @@ public class Pedido {
 			pedido.pagamento = pagamento;
 			return this;
 		}
-		
+		//a única regra de negócio é que o pagamento seja informado no pedido
 		public Pedido build() throws Exception{
 			if(pedido.pagamento == null) {
 				throw new Exception("forma de pagamento não informada");
@@ -45,7 +46,7 @@ public class Pedido {
 			return pedido;
 		}
 	}
-	
+	//opção de maionese extra criada para apresentar o uso do mockito nos testes
 	public String maioneseExtra() throws Exception {
 		if(lanche == null) {
 			throw new Exception("Não pode ser fornecido maionese extra sem um lanche");

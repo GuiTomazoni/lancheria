@@ -1,5 +1,7 @@
 package br.com.fundatec.lancheria;
 
+
+//Enum criado pra facilitar o uso de bebida como parâmetro e não ter que receber uma String toda vez
 public enum Bebida {
 
 	COCA_COLA("Coca-cola"),
